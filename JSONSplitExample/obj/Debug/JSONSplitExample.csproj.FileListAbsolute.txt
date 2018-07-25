@@ -1,0 +1,13 @@
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\obj\Debug\JSONSplitExample.csprojAssemblyReference.cache
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\obj\Debug\JSONSplitExample.Form1.resources
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\obj\Debug\JSONSplitExample.Properties.Resources.resources
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\obj\Debug\JSONSplitExample.csproj.GenerateResource.cache
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\obj\Debug\JSONSplitExample.csproj.CoreCompileInputs.cache
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\bin\Debug\JSONSplitExample.exe.config
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\bin\Debug\JSONSplitExample.exe
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\bin\Debug\JSONSplitExample.pdb
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\bin\Debug\Newtonsoft.Json.dll
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\bin\Debug\Newtonsoft.Json.xml
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\obj\Debug\JSONSplitExample.csproj.CopyComplete
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\obj\Debug\JSONSplitExample.exe
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\obj\Debug\JSONSplitExample.pdb

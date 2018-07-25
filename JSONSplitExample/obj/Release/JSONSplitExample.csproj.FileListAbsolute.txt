@@ -1,0 +1,12 @@
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\bin\Release\JSONSplitExample.exe.config
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\bin\Release\JSONSplitExample.exe
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\bin\Release\JSONSplitExample.pdb
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\bin\Release\Newtonsoft.Json.dll
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\bin\Release\Newtonsoft.Json.xml
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\obj\Release\JSONSplitExample.Form1.resources
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\obj\Release\JSONSplitExample.Properties.Resources.resources
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\obj\Release\JSONSplitExample.csproj.GenerateResource.cache
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\obj\Release\JSONSplitExample.csproj.CoreCompileInputs.cache
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\obj\Release\JSONSplitExample.csproj.CopyComplete
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\obj\Release\JSONSplitExample.exe
+c:\users\oleg\source\repos\JSONSplitExample\JSONSplitExample\obj\Release\JSONSplitExample.pdb

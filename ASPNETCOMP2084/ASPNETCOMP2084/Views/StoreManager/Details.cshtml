@@ -1,0 +1,59 @@
+﻿@model ASPNETCOMP2084.Models.Album
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Album</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Artist.Artist1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Artist.Artist1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre.genre1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre.genre1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlbumName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlbumName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlbumArtistUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlbumArtistUrl)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

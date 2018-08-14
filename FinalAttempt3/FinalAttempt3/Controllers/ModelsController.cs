@@ -52,16 +52,26 @@ namespace FinalAttempt3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ModelId,EngineSize,NumberOfDoors,Colour,VehicleTypeId,CreateDate,EditDate")] Model model)
         {
-            if (ModelState.IsValid)
-            {
-                db.Models.Add(model);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "VehicleTypeId", "VehicleTypeName", model.VehicleTypeId);
-            return View(model);
-        }
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Models.Add(model);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "VehicleTypeId", "VehicleTypeName", model.VehicleTypeId);
+                return View(model);
+
+            }
+            catch (Exception ex)
+            {
+                while (ex.InnerException != null) ex = ex.InnerException;
+                return View("Error", new HandleErrorInfo(ex, "ModelsController", "Create"));
+            }
+}
 
         // GET: Models/Edit/5
         public ActionResult Edit(decimal id)
@@ -87,29 +97,39 @@ namespace FinalAttempt3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ModelId,EngineSize,NumberOfDoors,Colour,VehicleTypeId,CreateDate,EditDate")] Model model)
         {
-            if (ModelState.IsValid)
-            {
+            try
+            { 
+                if (ModelState.IsValid)
+                {
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
+                }
+                ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "VehicleTypeId", "VehicleTypeName", model.VehicleTypeId);
+                return View(model);
             }
-            ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "VehicleTypeId", "VehicleTypeName", model.VehicleTypeId);
-            return View(model);
-        }
+            catch (Exception ex)
+            {
+                while (ex.InnerException != null) ex = ex.InnerException;
+                return View("Error", new HandleErrorInfo(ex, "ModelsController", "Edit"));
+            }
+}
 
         // GET: Models/Delete/5
         public ActionResult Delete(decimal id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Model model = db.Models.Find(id);
-            if (model == null)
-            {
-                return HttpNotFound();
-            }
-            return View(model);
+
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+                    Model model = db.Models.Find(id);
+                    if (model == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(model);
+
         }
 
         // POST: Models/Delete/5
@@ -117,11 +137,21 @@ namespace FinalAttempt3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(decimal id)
         {
-            Model model = db.Models.Find(id);
-            db.Models.Remove(model);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+
+            try { 
+                Model model = db.Models.Find(id);
+                db.Models.Remove(model);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+
+            }
+            catch (Exception ex)
+            {
+                while (ex.InnerException != null) ex = ex.InnerException;
+                return View("Error", new HandleErrorInfo(ex, "ModelsController", "Delete"));
+            }
+
+}
 
         protected override void Dispose(bool disposing)
         {

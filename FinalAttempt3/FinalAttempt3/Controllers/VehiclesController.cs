@@ -41,7 +41,7 @@ namespace FinalAttempt3.Controllers
         {
             Vehicle v = new Vehicle() { CreateDate = DateTime.Now, EditDate = DateTime.Now };
             ViewBag.MakeId = new SelectList(db.Makes, "MakeId", "Name");
-            ViewBag.ModelId = new SelectList(db.Models, "ModelId", "Colour");
+            ViewBag.ModelId = new SelectList(db.Models, "ModelId", "ModelId");
             return View(v);
         }
 
@@ -52,16 +52,27 @@ namespace FinalAttempt3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "VehicleId,MakeId,ModelId,Year,Price,Cost,SoldDate,isSold,CreateDate,EditDate")] Vehicle vehicle)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Vehicles.Add(vehicle);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                if (ModelState.IsValid)
+                {
+                    db.Vehicles.Add(vehicle);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                ViewBag.MakeId = new SelectList(db.Makes, "MakeId", "Name", vehicle.MakeId);
+                ViewBag.ModelId = new SelectList(db.Models, "ModelId", "ModelId", vehicle.ModelId);
+                return View(vehicle);
+            }
+            catch (Exception ex)
+            {
+                while (ex.InnerException != null) ex = ex.InnerException;
+                return View("Error", new HandleErrorInfo(ex, "VehiclesController", "Create"));
             }
 
-            ViewBag.MakeId = new SelectList(db.Makes, "MakeId", "Name", vehicle.MakeId);
-            ViewBag.ModelId = new SelectList(db.Models, "ModelId", "Colour", vehicle.ModelId);
-            return View(vehicle);
+
         }
 
         // GET: Vehicles/Edit/5
@@ -78,7 +89,7 @@ namespace FinalAttempt3.Controllers
                 return HttpNotFound();
             }
             ViewBag.MakeId = new SelectList(db.Makes, "MakeId", "Name", vehicle.MakeId);
-            ViewBag.ModelId = new SelectList(db.Models, "ModelId", "Colour", vehicle.ModelId);
+            ViewBag.ModelId = new SelectList(db.Models, "ModelId", "ModelId", vehicle.ModelId);
             return View(vehicle);
         }
 
@@ -89,15 +100,24 @@ namespace FinalAttempt3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "VehicleId,MakeId,ModelId,Year,Price,Cost,SoldDate,isSold,CreateDate,EditDate")] Vehicle vehicle)
         {
-            if (ModelState.IsValid)
+
+            try
             {
-                db.Entry(vehicle).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(vehicle).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ViewBag.MakeId = new SelectList(db.Makes, "MakeId", "Name", vehicle.MakeId);
+                ViewBag.ModelId = new SelectList(db.Models, "ModelId", "ModelId", vehicle.ModelId);
+                return View(vehicle);
             }
-            ViewBag.MakeId = new SelectList(db.Makes, "MakeId", "Name", vehicle.MakeId);
-            ViewBag.ModelId = new SelectList(db.Models, "ModelId", "Colour", vehicle.ModelId);
-            return View(vehicle);
+            catch (Exception ex)
+            {
+                while (ex.InnerException != null) ex = ex.InnerException;
+                return View("Error", new HandleErrorInfo(ex, "VehiclesController", "Edit"));
+            }
         }
 
         // GET: Vehicles/Delete/5
@@ -120,11 +140,21 @@ namespace FinalAttempt3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(decimal id)
         {
-            Vehicle vehicle = db.Vehicles.Find(id);
-            db.Vehicles.Remove(vehicle);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+
+            try { 
+                    Vehicle vehicle = db.Vehicles.Find(id);
+                    db.Vehicles.Remove(vehicle);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+
+                }
+            catch (Exception ex)
+            {
+                while (ex.InnerException != null) ex = ex.InnerException;
+                return View("Error", new HandleErrorInfo(ex, "VehiclesController", "Delete"));
+            }
+
+}
 
         protected override void Dispose(bool disposing)
         {

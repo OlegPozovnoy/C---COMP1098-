@@ -21,11 +21,18 @@ namespace FinalAttempt3.Models
         [Display(Name = "Model")]
         public decimal ModelId { get; set; }
 
+
+        [Required]
+        [Range(1800, 2018, ErrorMessage = "Year must be between 1800 and 2018")]
         public int Year { get; set; }
 
+        [Required]
+        [Range(100, 10000000, ErrorMessage = "Price must be between 100 and 10000000")]
         [Column(TypeName = "money")]
         public decimal Price { get; set; }
 
+        [Required]
+        [Range(100, 10000000, ErrorMessage = "Cost must be between 100 and 10000000")]
         [Column(TypeName = "money")]
         public decimal Cost { get; set; }
 

@@ -50,15 +50,25 @@ namespace FinalAttempt3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "VehicleTypeId,VehicleTypeName,CreateDate,EditDate")] VehicleType vehicleType)
         {
-            if (ModelState.IsValid)
+
+            try { 
+                if (ModelState.IsValid)
+                {
+                    db.VehicleTypes.Add(vehicleType);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                return View(vehicleType);
+
+            }
+            catch (Exception ex)
             {
-                db.VehicleTypes.Add(vehicleType);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                while (ex.InnerException != null) ex = ex.InnerException;
+                return View("Error", new HandleErrorInfo(ex, "VehicleTypesController", "Create"));
             }
 
-            return View(vehicleType);
-        }
+}
 
         // GET: VehicleTypes/Edit/5
         public ActionResult Edit(decimal id)
@@ -83,17 +93,27 @@ namespace FinalAttempt3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "VehicleTypeId,VehicleTypeName,CreateDate,EditDate")] VehicleType vehicleType)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(vehicleType).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(vehicleType);
-        }
 
-        // GET: VehicleTypes/Delete/5
-        public ActionResult Delete(decimal id)
+            try {
+                if (ModelState.IsValid)
+                    {
+                        db.Entry(vehicleType).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    return View(vehicleType);
+                }
+            catch (Exception ex)
+            {
+                while (ex.InnerException != null) ex = ex.InnerException;
+                return View("Error", new HandleErrorInfo(ex, "VehicleTypesController", "Edit"));
+            }
+
+
+}
+
+// GET: VehicleTypes/Delete/5
+public ActionResult Delete(decimal id)
         {
             if (id == null)
             {
@@ -112,11 +132,21 @@ namespace FinalAttempt3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(decimal id)
         {
+            try
+            { 
             VehicleType vehicleType = db.VehicleTypes.Find(id);
             db.VehicleTypes.Remove(vehicleType);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
+
+            }
+            catch (Exception ex)
+            {
+                while (ex.InnerException != null) ex = ex.InnerException;
+                return View("Error", new HandleErrorInfo(ex, "VehicleTypesController", "Delete"));
+            }
+
+}
 
         protected override void Dispose(bool disposing)
         {

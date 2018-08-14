@@ -49,15 +49,25 @@ namespace FinalAttempt3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MakeId,Name,CreateDate,EditDate")] Make make)
         {
-            if (ModelState.IsValid)
+            try { 
+
+                    if (ModelState.IsValid)
+                    {
+                        db.Makes.Add(make);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+
+                    return View(make);
+
+            }
+            catch (Exception ex)
             {
-                db.Makes.Add(make);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                while (ex.InnerException != null) ex = ex.InnerException;
+                return View("Error", new HandleErrorInfo(ex, "MakesController", "Create"));
             }
 
-            return View(make);
-        }
+}
 
         // GET: Makes/Edit/5
         public ActionResult Edit(decimal id)
@@ -82,14 +92,24 @@ namespace FinalAttempt3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MakeId,Name,CreateDate,EditDate")] Make make)
         {
-            if (ModelState.IsValid)
+
+            try { 
+                    if (ModelState.IsValid)
+                    {
+                        db.Entry(make).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    return View(make);
+
+                }
+            catch (Exception ex)
             {
-                db.Entry(make).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                while (ex.InnerException != null) ex = ex.InnerException;
+                return View("Error", new HandleErrorInfo(ex, "MakesController", "Edit"));
             }
-            return View(make);
-        }
+
+}
 
         // GET: Makes/Delete/5
         public ActionResult Delete(decimal id)
@@ -111,13 +131,25 @@ namespace FinalAttempt3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(decimal id)
         {
+
+            try { 
             Make make = db.Makes.Find(id);
             db.Makes.Remove(make);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
 
-        protected override void Dispose(bool disposing)
+            }
+            catch (Exception ex)
+            {
+                while (ex.InnerException != null) ex = ex.InnerException;
+                return View("Error", new HandleErrorInfo(ex, "MakesController", "Delete"));
+            }
+
+
+
+}
+
+protected override void Dispose(bool disposing)
         {
             if (disposing)
             {

@@ -186,6 +186,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\FinalAttempt320180813111447 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\FinalAttempt320180814110959 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\GreatIdeazapp - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

@@ -16,11 +16,17 @@ namespace FinalAttempt3.Models
         }
 
         [Column(TypeName = "numeric")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Display(Name = "Model")]
+        [DisplayFormat(DataFormatString = "{0:F0}")]
         public decimal ModelId { get; set; }
 
+        [Required]
+        [Range(0, 10000, ErrorMessage = "EngineSize must be between 0 and 10000")]
         public double EngineSize { get; set; }
 
+        [Required]
+        [Range(0, 8, ErrorMessage = "NumberOfDoors must be between 0 and 8")]
         public int NumberOfDoors { get; set; }
 
         [Required]

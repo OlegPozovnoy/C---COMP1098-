@@ -19,7 +19,7 @@
     @Html.HiddenFor(model => model.VehicleId)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.MakeId, "MakeId", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.MakeId, "Make", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownList("MakeId", null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.MakeId, "", new { @class = "text-danger" })
@@ -27,7 +27,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ModelId, "ModelId", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.ModelId, "Model", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownList("ModelId", null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.ModelId, "", new { @class = "text-danger" })
@@ -61,7 +61,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.SoldDate, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.SoldDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.TextBoxFor(model => model.SoldDate, "{0:yyyy-MM-ddTHH:mm}", new { type = "datetime-local", htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.SoldDate, "", new { @class = "text-danger" })
         </div>
     </div>
